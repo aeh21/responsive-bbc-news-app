@@ -22,6 +22,10 @@ API Used: [News Api Top Headlines](https://newsapi.org/docs/endpoints/top-headli
 
 In the project directory, you can run:
 
+### `npm i`
+
+Start with this command to install all dependencies
+
 ### `npm start`
 
 Runs the app in the development mode.\
