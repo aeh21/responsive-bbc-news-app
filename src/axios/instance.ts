@@ -1,7 +1,8 @@
 import axios from 'axios';
+
 const axiosInstance = axios.create({
     headers: {
-        'x-api-key': 'b28952e5f07647ad8d671c64462007df'
+        'x-api-key': '934f9667c2274bdcaa0db05d061d951c'
     }
 })
 

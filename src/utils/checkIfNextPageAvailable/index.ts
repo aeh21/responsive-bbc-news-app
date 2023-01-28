@@ -5,7 +5,7 @@ const checkIfNextPageAvailable = (
 ) => {
   const itemsOnPrevPage = (page - 1) * pageSize;
 
-  return !(itemsOnPrevPage + pageSize > totalResults);
+  return !(itemsOnPrevPage + pageSize >= totalResults);
 };
 
 export default checkIfNextPageAvailable;

@@ -66,8 +66,6 @@ const Country = () => {
 
   if (isLoading && page === 1) return <LoadingSpinner size="large" />;
 
-  console.log(apiData && articles.length > 0)
-
   if (articles.length > 0) {
     return (
       <div className="flex flex-col space-y-8 container mx-auto py-8">

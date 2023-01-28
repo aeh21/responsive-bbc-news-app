@@ -9,3 +9,4 @@ export const COUNTRIES: Country[] = [
 ];
 
 export const NEWS_API_URL = "https://newsapi.org/v2";
+export const DEFAULT_ARTICLE_HEADER_IMAGE = "/img/article-header-placeholder.jpg";
