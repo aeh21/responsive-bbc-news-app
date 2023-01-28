@@ -2,28 +2,27 @@ import useSWR from "swr";
 
 import axiosInstance from "../../axios/instance";
 import { NEWS_API_URL } from "../../constants";
+import { Article } from "../../types";
 
-interface Article {
-  source: {
-    id: string | null;
-    name: string;
-  };
-  author: string;
-  title: string;
-  description: string;
-  url: string;
-  urlToImage: string;
-  publishedAt: string;
-  content: string;
+interface ApiResponse {
+  articles: Article[];
+  status: string;
+  totalResults: number;
 }
 
-const useFetchTopHeadlines = (countryCode: string | undefined) => {
+const useFetchTopHeadlines = (
+  countryCode: string | undefined,
+  page: number,
+  pageSize: number
+) => {
   const cacheKey = `${NEWS_API_URL}-${countryCode}`;
 
-  return useSWR<Article[], unknown>(cacheKey, () =>
+  return useSWR<ApiResponse, unknown>(cacheKey, () =>
     axiosInstance
-      .get(`${NEWS_API_URL}/top-headlines?country=${countryCode}`)
-      .then((response) => response.data.articles)
+      .get(
+        `${NEWS_API_URL}/top-headlines?country=${countryCode}&page=${page}&pageSize=${pageSize}`
+      )
+      .then((response) => response.data)
   );
 };
 

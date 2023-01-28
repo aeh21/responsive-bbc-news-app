@@ -69,21 +69,18 @@ const Navbar = () => {
           )}
         >
           <ul className="items-center justify-left space-y-8 md:flex md:space-x-6 md:space-y-0">
-            <li className="hover:text-bbc-red">
-              {NAV_LINKS.map((link) => {
-                return (
+            {NAV_LINKS.map((link) => {
+              return (
+                <li key={link.path} className="hover:text-bbc-red">
                   <Link
                     to={link.path}
-                    key={link.path}
-                    className={
-                      pathname === link.path ? "text-bbc-red" : ""
-                    }
+                    className={pathname === link.path ? "text-bbc-red" : ""}
                   >
                     {link.label}
                   </Link>
-                );
-              })}
-            </li>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
