@@ -15,7 +15,7 @@ const useFetchTopHeadlines = (
   page: number,
   pageSize: number
 ) => {
-  const cacheKey = `${NEWS_API_URL}-${countryCode}`;
+  const cacheKey = `${NEWS_API_URL}/top-headlines?country=${countryCode}&page=${page}&pageSize=${pageSize}`;
 
   return useSWR<ApiResponse, unknown>(cacheKey, () =>
     axiosInstance
