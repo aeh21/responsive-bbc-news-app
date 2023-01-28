@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { CountryCode } from "../../types";
-import getCountryNameFromCode from "../../utils/getCountryNameFromCode/getCountryNameFromCode";
+import getCountryNameFromCode from "../../utils/getCountryNameFromCode";
 
 const NewsBanner = () => {
   const [countryCode, setCountryCode] = useState<CountryCode | undefined>(

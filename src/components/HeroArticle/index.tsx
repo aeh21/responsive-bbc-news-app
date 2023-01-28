@@ -2,8 +2,8 @@ import cx from "classnames";
 import { Link } from "react-router-dom";
 
 import { Article } from "../../types";
-import formatPublicationDate from "../../utils/formatPublicationDate/formatPublicationDate";
-import getArticleImageSrc from "../../utils/getArticleImageSrc/getArticleImageSrc";
+import formatPublicationDate from "../../utils/formatPublicationDate";
+import getArticleImageSrc from "../../utils/getArticleImageSrc";
 
 interface Props extends Article {
   className?: string;
