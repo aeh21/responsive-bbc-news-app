@@ -10,6 +10,7 @@ module.exports = {
       ...colors,
       nero: "#141414",
       "bbc-red": "#B80000",
+      "bbc-blue": "#0071F1",
     },
     container: {
       padding: '1rem',

@@ -1,12 +1,21 @@
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import useFetchTopHeadlines from "../../api/useFetchTopHeadlines";
 import ArticleCard from "../../components/ArticleCard";
 import HeroArticle from "../../components/HeroArticle";
+import { Article } from "../../types";
+import checkIfNextPageAvailable from "../../utils/checkIfNextPageAvailable";
 
 const Country = () => {
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize] = useState(5);
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [heroArticle, setHeroArticle] = useState<Article | undefined>(
+    undefined
+  );
+  const [hasMoreArticles, setHasMoreArticles] = useState(true);
+
   const { countryCode } = useParams();
 
   const {
@@ -15,21 +24,47 @@ const Country = () => {
     isLoading,
   } = useFetchTopHeadlines(countryCode, page, pageSize);
 
-  if (error) return <div>failed to load</div>;
+  useEffect(() => {
+    const apiArticles = apiData?.articles;
 
-  if (isLoading) return <div>loading...</div>;
+    if (apiArticles) {
+      setArticles((prevState) => [...prevState, ...apiArticles]);
+    }
+  }, [apiData, page]);
 
-  const articles = apiData?.articles;
+  useEffect(() => {
+    if (articles.length > 0) setHeroArticle(articles[0]);
+  }, [articles]);
 
-  if (articles && articles.length > 0) {
-    const heroArticle = articles[0];
+  useEffect(() => {
+    const totalResults = apiData?.totalResults;
 
+    if (totalResults) {
+      const nextPageAvailable = checkIfNextPageAvailable(
+        page,
+        pageSize,
+        apiData.totalResults
+      );
+      setHasMoreArticles(nextPageAvailable);
+    }
+  }, [page, pageSize, apiData]);
+
+  const handleLoadMoreArticles = (page: number) => {
+    setPage(page + 1);
+  };
+
+  if (error) return <div className="container mx-auto">failed to load</div>;
+
+  if (isLoading && page === 1)
+    return <div className="container mx-auto">loading...</div>;
+
+  if (articles.length > 0) {
     return (
-      <div className="container mx-auto py-8">
-        <HeroArticle {...heroArticle} />
+      <div className="flex flex-col space-y-8 container mx-auto py-8">
+        {heroArticle && <HeroArticle {...heroArticle} />}
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {articles.slice(1, 5).map((article) => {
+          {articles.slice(1, articles.length).map((article) => {
             return (
               <ArticleCard
                 key={article.url}
@@ -39,6 +74,18 @@ const Country = () => {
             );
           })}
         </div>
+
+        {hasMoreArticles && (
+          <div className="flex space-x-2 justify-center">
+            <button
+              type="button"
+              className="inline-block px-6 py-2.5 bg-bbc-blue text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-bbc-red focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-bbc-blue transition duration-150 ease-in-out"
+              onClick={() => handleLoadMoreArticles(page)}
+            >
+              {isLoading && page !== 1 ? "Loading..." : `Load ${pageSize} more`}
+            </button>
+          </div>
+        )}
       </div>
     );
   }
