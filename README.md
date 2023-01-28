@@ -1,6 +1,22 @@
-# Getting Started with Create React App
+# Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The task is to create a responsive web application that you can use to see the top news in one
+of 5 prelisted country: UK, US, France, Australia and India. The application should display
+the following information:
+- Country
+- Top 5 headlines
+
+API Used: [News Api Top Headlines](https://newsapi.org/docs/endpoints/top-headlines)
+
+# Frameworks and Libraries used
+
+* React & TypeScript & React Testing Library - project boostrapped with [Create React App](https://github.com/facebook/create-react-app)
+* [React Router](https://reactrouter.com/en/main) - used for navigation
+* [SWR (stale-while-revalidate)](https://swr.vercel.app/) - React Hooks for Data Fetching
+* [Axios](https://axios-http.com/docs/intro) - a promise-based HTTP Client
+* [React World Flags](https://www.npmjs.com/package/react-world-flags)
+* [date-fns](https://date-fns.org/) - for formatting dates
+* [classnames](https://www.npmjs.com/package/classnames) - JavaScript library for conditionally joining *classNames* together
 
 ## Available Scripts
 
@@ -10,9 +26,6 @@ In the project directory, you can run:
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
 ### `npm test`
 
@@ -28,19 +41,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
