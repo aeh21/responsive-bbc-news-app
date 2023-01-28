@@ -11,6 +11,7 @@ module.exports = {
       nero: "#141414",
       "bbc-red": "#B80000",
       "bbc-blue": "#0071F1",
+      "bbc-yellow": "#FFD230",
     },
     container: {
       padding: '1rem',

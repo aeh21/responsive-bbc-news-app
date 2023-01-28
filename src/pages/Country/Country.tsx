@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import useFetchTopHeadlines from "../../api/useFetchTopHeadlines";
 import ArticleCard from "../../components/ArticleCard";
 import HeroArticle from "../../components/HeroArticle";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { Article } from "../../types";
 import checkIfNextPageAvailable from "../../utils/checkIfNextPageAvailable";
 
@@ -53,10 +54,19 @@ const Country = () => {
     setPage(page + 1);
   };
 
-  if (error) return <div className="container mx-auto">failed to load</div>;
+  if (error)
+    return (
+      <div className="container mx-auto">
+        <h1>
+          An error has occured, please try again. If the error persist, contact
+          us.
+        </h1>
+      </div>
+    );
 
-  if (isLoading && page === 1)
-    return <div className="container mx-auto">loading...</div>;
+  if (isLoading && page === 1) return <LoadingSpinner size="large" />;
+
+  console.log(apiData && articles.length > 0)
 
   if (articles.length > 0) {
     return (
@@ -79,10 +89,14 @@ const Country = () => {
           <div className="flex space-x-2 justify-center">
             <button
               type="button"
-              className="inline-block px-6 py-2.5 bg-bbc-blue text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-bbc-red focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-bbc-blue transition duration-150 ease-in-out"
+              className="w-48 h-12 inline-block px-6 py-4 bg-bbc-blue text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-bbc-red focus:bg-blue-700 focus:outline-none focus:ring-0 active:bg-bbc-blue transition duration-150 ease-in-out"
               onClick={() => handleLoadMoreArticles(page)}
             >
-              {isLoading && page !== 1 ? "Loading..." : `Load ${pageSize} more`}
+              {isLoading && page !== 1 ? (
+                <LoadingSpinner />
+              ) : (
+                `Load ${pageSize} more`
+              )}
             </button>
           </div>
         )}
@@ -90,7 +104,11 @@ const Country = () => {
     );
   }
 
-  return <>No Articles to display</>;
+  return (
+    <div className="container mx-auto">
+      <p>There are no articles to display</p>
+    </div>
+  );
 };
 
 export default Country;
