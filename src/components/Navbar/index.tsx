@@ -14,11 +14,9 @@ const Navbar = () => {
 
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   return (
     <nav className="w-full bg-white">
-      <div className="justify-between md:justify-left px-4 mx-auto container md:items-center md:flex md:px-8 space-x-4">
+      <div className="justify-between md:justify-left mx-auto container md:items-center md:flex space-x-4">
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <Link to="/" className="text-gray-600 hover:text-blue-600">
             <img

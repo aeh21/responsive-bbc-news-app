@@ -11,7 +11,7 @@ const Main = () => {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:countryCode" element={<Country />} />
+          <Route path="/news/:countryCode" element={<Country />} />
         </Routes>
       </main>
     </React.Suspense>

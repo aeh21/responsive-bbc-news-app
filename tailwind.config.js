@@ -5,6 +5,10 @@ module.exports = {
     colors: {
       nero: "#141414",
       "bbc-red": "#B80000",
+      white: "#ffffff",
+    },
+    container: {
+      padding: '1rem',
     },
     extend: {},
   },
