@@ -1,11 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
+
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     colors: {
+      ...colors,
       nero: "#141414",
       "bbc-red": "#B80000",
-      white: "#ffffff",
     },
     container: {
       padding: '1rem',

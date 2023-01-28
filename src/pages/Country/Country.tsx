@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import useFetchTopHeadlines from "../../api/useFetchTopHeadlines";
 
 const Country = () => {
-  let { countryCode } = useParams();
+  const { countryCode } = useParams();
 
   const { data, error, isLoading } = useFetchTopHeadlines(countryCode);
 
